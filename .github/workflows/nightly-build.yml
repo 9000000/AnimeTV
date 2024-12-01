@@ -12,7 +12,7 @@ jobs:
             matrix:
                 platform: [ windows-latest, ubuntu-latest, macos-latest, macos-13]
         runs-on: ${{ matrix.platform }}
-        if: startsWith(github.event.head_commit.message, 'Release:')
+        if: github.event_name == 'workflow_dispatch' || startsWith(github.event.head_commit.message, 'Release:')
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
