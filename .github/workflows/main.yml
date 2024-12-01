@@ -22,7 +22,9 @@ jobs:
               with:
                 node-version: latest
 
-            - name: Install appdmg
+            # Install appdmg only on macOS platforms
+            - name: Install appdmg for macOS
+              if: matrix.platform == 'macos-latest' || matrix.platform == 'macos-13'
               run: npm install appdmg --save-dev
 
             - name: Get npm cache directory
